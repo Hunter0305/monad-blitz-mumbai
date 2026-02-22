@@ -4,8 +4,6 @@ import { Loader2, CheckCircle2, XCircle, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { TransactionState } from "@/lib/web3";
 import { contractFunctions } from "@/lib/web3";
-import type { Goal } from "@/lib/mockData";
-import { mockGoals, mockStats } from "@/lib/mockData";
 
 interface StakeModalProps {
   open: boolean;
@@ -44,29 +42,10 @@ export function StakeModal({
         description,
       });
       setTxState('pending');
+      // Simulate confirmation delay (in production you'd wait for receipt)
       setTimeout(() => {
         setTxState('confirmed');
         setTimeout(() => {
-          const id = String(mockGoals.length + 1);
-          const createdAt = new Date();
-          const deadlineDate = new Date(deadlineSeconds * 1000);
-          const newGoal: Goal = {
-            id,
-            title: description || `Goal ${id}`,
-            description: description || "Custom goal",
-            stakeAmount,
-            currency,
-            deadline: deadlineDate,
-            createdAt,
-            status: 'active',
-            proofSubmitted: false,
-            charity: charityLabel || "",
-            owner: "You",
-          };
-          mockGoals.push(newGoal);
-          mockStats.totalStaked += stakeAmount;
-          mockStats.goalsCreated += 1;
-          mockStats.activeGoals += 1;
           onConfirm();
           setTxState('idle');
           onClose();
