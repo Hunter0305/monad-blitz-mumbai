@@ -193,24 +193,23 @@ contract StakeYourGoal is Ownable, ReentrancyGuard {
 
         goal.aiScore = score;
 
-        bool passed = score >= 75;
-
         // Auto-resolve high confidence scores
-        if (passed) {
+        if (score >= 75) {
             goal.status = 1; // completed
             _onGoalCompleted(goalId, goal);
             emit GoalResolved(goalId, 1);
+            emit GoalVerified(goalId, msg.sender, score, true);
         } else if (score < 40) {
             goal.status = 2; // failed
             _onGoalFailed(goalId, goal);
             emit GoalResolved(goalId, 2);
+            emit GoalVerified(goalId, msg.sender, score, false);
         } else {
-            // Mid-range: trigger DAO vote
+            // Mid-range: trigger DAO vote (no GoalVerified yet)
             emit VoteStarted(goalId, block.timestamp + votingPeriod);
         }
 
         emit AIScoredProof(goalId, score, "AI verification complete");
-        emit GoalVerified(goalId, msg.sender, score, passed);
     }
 
     /**
