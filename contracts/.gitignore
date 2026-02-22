@@ -1,0 +1,26 @@
+# Foundry
+/out
+/broadcast
+/cache
+*.gas
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# npm
+node_modules
+package-lock.json
+yarn.lock

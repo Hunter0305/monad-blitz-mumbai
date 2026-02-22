@@ -1,0 +1,30 @@
+{
+  "name": "timevault-verifier",
+  "version": "1.0.0",
+  "description": "AI Proof Verifier Service for TimeVault Goals",
+  "main": "dist/verifier.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch verifier.ts",
+    "start": "tsx verifier.ts",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "lint": "eslint . --ext .ts"
+  },
+  "dependencies": {
+    "groq-sdk": "^0.5.0",
+    "viem": "^2.0.0",
+    "dotenv": "^16.4.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.0",
+    "@types/node": "^20.10.6",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
